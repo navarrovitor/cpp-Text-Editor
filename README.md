@@ -2,9 +2,7 @@
 
 ---
 
-<p align="center"> University project that turns a .txt file into a doubly linked list, lets you read it and change it.
-    <br>
-    Created with ❤️ by Amanda Massari and Vitor Navarro
+<p align="center"> This is a university project that turns a .txt file into a doubly linked list, lets you read it and change it.
     <br>
 
 </p>
@@ -34,13 +32,9 @@ Add notes about how to use the system.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
+- [C++](https://www.cplusplus.com/) - Entire code
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
-
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
+- Amanda Massari 🦊
+- Vitor Navarro 🦕

@@ -182,6 +182,11 @@ void LinkedList::print()
   cout << "[ ";
   while (aux != NULL)
   {
+    if (aux->next == NULL)
+    {
+      cout << aux->data << ' ';
+      break;
+    }
     cout << aux->data << ", ";
     aux = aux->next;
   }

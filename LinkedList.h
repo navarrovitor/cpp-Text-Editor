@@ -24,7 +24,8 @@ public:
   void removeBack();
   void removeNode(Node *node);
   void removeInPosition(int position);
-  void removeDuplicates();
 
   void print();
+
+  // void removeDuplicates();
 };

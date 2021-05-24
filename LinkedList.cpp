@@ -176,39 +176,34 @@ void LinkedList::removeInPosition(int position)
   return;
 }
 
-void LinkedList::removeDuplicates()
-{
-  if (!checkRemove())
-  {
-    cout << "entrou no if wtf";
-    return;
-  }
-  Node *one, *two;
-  for (one = head; one != NULL; one = one->next)
-  {
-    two = one->next;
-    while (two != NULL)
-    {
-      if (one->data == two->data)
-      {
-        Node *next = two->next;
-        removeNode(two);
-        two = next;
-      }
-      else
-        two = two->next;
-    }
-  }
-}
-
 void LinkedList::print()
 {
   Node *aux = head;
   cout << "[ ";
   while (aux != NULL)
   {
-    cout << aux->data << ' ';
+    cout << aux->data << ", ";
     aux = aux->next;
   }
   cout << "]" << endl;
 }
+
+// void LinkedList::removeDuplicates()
+// {
+//   Node *one, *two;
+//   for (one = head; one != NULL; one = one->next)
+//   {
+//     two = one->next;
+//     while (two != NULL)
+//     {
+//       if (one->data == two->data)
+//       {
+//         Node *next = two->next;
+//         removeNode(two);
+//         two = next;
+//       }
+//       else
+//         two = two->next;
+//     }
+//   }
+// }

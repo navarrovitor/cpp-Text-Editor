@@ -11,9 +11,9 @@ bool LinkedList::empty() { return size == 0; }
 
 int LinkedList::qty() { return size; }
 
-int LinkedList::frontValue() { return head->data; }
+Data LinkedList::frontValue() { return head->data; }
 
-int LinkedList::backValue() { return tail->data; }
+Data LinkedList::backValue() { return tail->data; }
 
 void LinkedList::addInEmpty(Data data)
 {
@@ -74,7 +74,7 @@ void LinkedList::addInPosition(Data data, int position)
     return;
   }
   Node *node = new Node(data), *aux = head;
-  for (int i = 1; i < position - 1; i++)
+  for (Data i = 1; i < position - 1; i++)
     aux = aux->next;
   node->next = aux->next;
   node->prev = aux;
@@ -170,7 +170,7 @@ void LinkedList::removeInPosition(int position)
   }
 
   Node *aux = head;
-  for (int i = 1; aux != NULL && i < position; i++)
+  for (Data i = 1; aux != NULL && i < position; i++)
     aux = aux->next;
   removeNode(aux);
   return;

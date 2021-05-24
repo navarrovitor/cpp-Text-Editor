@@ -5,7 +5,7 @@
 #include <string.h>
 
 using namespace std;
-typedef int Data;
+typedef char Data;
 class Node
 {
 private:

@@ -5,15 +5,15 @@ class LinkedList
 private:
   Node *head;
   Node *tail;
-  int size;
+  Data size;
 
 public:
   LinkedList();
 
   bool empty();
   int qty();
-  int frontValue();
-  int backValue();
+  Data frontValue();
+  Data backValue();
 
   void addInEmpty(Data data);
   void addFront(Data data);

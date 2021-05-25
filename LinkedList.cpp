@@ -193,6 +193,41 @@ void LinkedList::print()
   cout << "]" << endl;
 }
 
+int LinkedList::countWord(string word)
+{
+  int size = word.size(), countC, countW;
+
+  Node *one = head, *two;
+  while (one != NULL)
+  {
+    cout << "one: " << one->data << endl;
+    if (one->data == word[0])
+    {
+      countC = 0;
+      two = one;
+
+      for (int i = 0; i < size && two->next != NULL; i++, two = two->next)
+      {
+        if (two->next->next == NULL)
+          countC++;
+        if (two->data == word[i])
+          countC++;
+        cout << "two: " << two->data << ' ' << endl;
+        // cout << "'" << two->data << "' , '" << two->next->data << "'" << endl;
+      }
+      if (two->data == ' ' || two->data == '.' || two->data == ',' || two->data == word[size - 1])
+      {
+        if (countC == size)
+        {
+          countW++;
+        }
+      }
+    }
+    one = one->next;
+  }
+  return countW;
+}
+
 // void LinkedList::removeDuplicates()
 // {
 //   Node *one, *two;

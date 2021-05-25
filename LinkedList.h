@@ -27,5 +27,7 @@ public:
 
   void print();
 
+  int countWord(string word);
+
   // void removeDuplicates();
 };

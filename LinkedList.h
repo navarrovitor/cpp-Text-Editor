@@ -27,7 +27,7 @@ public:
 
   void print();
 
+  // bool checkWord(string word);
   int countWord(string word);
-
-  // void removeDuplicates();
+  void changeWord(string oldWord, string newWord);
 };

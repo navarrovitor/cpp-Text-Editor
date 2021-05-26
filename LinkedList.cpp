@@ -200,7 +200,6 @@ int LinkedList::countWord(string word)
   Node *one = head, *two;
   while (one != NULL)
   {
-    cout << "one: " << one->data << endl;
     if (one->data == word[0])
     {
       countC = 0;
@@ -212,8 +211,6 @@ int LinkedList::countWord(string word)
           countC++;
         if (two->data == word[i])
           countC++;
-        cout << "two: " << two->data << ' ' << endl;
-        // cout << "'" << two->data << "' , '" << two->next->data << "'" << endl;
       }
       if (two->data == ' ' || two->data == '.' || two->data == ',' || two->data == word[size - 1])
       {
@@ -228,22 +225,19 @@ int LinkedList::countWord(string word)
   return countW;
 }
 
-// void LinkedList::removeDuplicates()
-// {
-//   Node *one, *two;
-//   for (one = head; one != NULL; one = one->next)
-//   {
-//     two = one->next;
-//     while (two != NULL)
-//     {
-//       if (one->data == two->data)
-//       {
-//         Node *next = two->next;
-//         removeNode(two);
-//         two = next;
-//       }
-//       else
-//         two = two->next;
-//     }
-//   }
-// }
+void LinkedList::changeWord(string oldWord, string newWord)
+{
+  int oldSize = oldWord.size(), newSize = newWord.size();
+  if (oldSize == newSize)
+  {
+    cout << "tamanhos iguais" << endl;
+  }
+  else if (oldSize > newSize)
+  {
+    cout << "a palavra velha é maior" << endl;
+  }
+  else
+  {
+    cout << "a palavra nova é maior" << endl;
+  }
+}

@@ -7,6 +7,7 @@ using namespace std;
 
 int main()
 {
+
   char character;
 
   LinkedList list;
@@ -20,14 +21,15 @@ int main()
 
   while (text >> noskipws >> character)
   {
-    cout << character;
+    // cout << "caractere inserido: '" << character << "'" << endl;
     list.addBack(character);
   }
+  // list.print();
 
-  list.print();
   text.close();
 
-  // cout << list.countWord("inteligencia") << endl;
+  // cout << list.countWord("smile") << endl;
+  list.changeWord("smile", "smile");
 
   return 0;
 }

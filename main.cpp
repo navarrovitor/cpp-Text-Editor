@@ -21,15 +21,13 @@ int main()
 
   while (text >> noskipws >> character)
   {
-    // cout << "caractere inserido: '" << character << "'" << endl;
     list.addBack(character);
   }
-  // list.print();
+
+  list.print();
+  // list.changeWord("i", "a");
 
   text.close();
-
-  // cout << list.countWord("smile") << endl;
-  list.changeWord("smile", "smile");
 
   return 0;
 }

@@ -1,4 +1,5 @@
 #include "LinkedList.h"
+#include <string>
 
 LinkedList::LinkedList()
 {
@@ -7,7 +8,7 @@ LinkedList::LinkedList()
   size = 0;
 }
 
-bool LinkedList::empty() { return size == 0; }
+bool LinkedList::empty() { return head == NULL; }
 
 int LinkedList::qty() { return size; }
 
@@ -15,45 +16,28 @@ Data LinkedList::frontValue() { return head->data; }
 
 Data LinkedList::backValue() { return tail->data; }
 
-void LinkedList::addInEmpty(Data data)
-{
-  if (empty())
-  {
-    Node *node = new Node(data);
-    head = node;
-    tail = node;
-    size++;
-  }
-  else
-    return;
-}
-
 void LinkedList::addFront(Data data)
 {
   Node *node = new Node(data);
-  if (empty())
-    addInEmpty(data);
-  else
-  {
-    node->prev = NULL;
-    node->next = head;
-    head = node;
-    size++;
-  }
+  if (head != NULL)
+    head->prev = node;
+  node->next = head;
+  node->prev = NULL;
+  head = node;
+  if (tail == NULL)
+    tail = node;
+  size++;
 }
 
 void LinkedList::addBack(Data data)
 {
+  if (head == NULL)
+    return addFront(data);
   Node *node = new Node(data);
-  if (empty())
-    addInEmpty(data);
-  else
-  {
-    node->prev = tail;
-    tail->next = node;
-    tail = node;
-    size++;
-  }
+  tail->next = node;
+  node->prev = tail;
+  tail = node;
+  size++;
 }
 
 void LinkedList::addInPosition(Data data, int position)
@@ -193,33 +177,45 @@ void LinkedList::print()
   cout << "]" << endl;
 }
 
+bool LinkedList::checkWord(string word, Node *startingPoint)
+{
+  if (startingPoint->next == NULL)
+    return false;
+  int size = word.size(), loop = 0;
+  Node *one = startingPoint, *two;
+  while (loop < 1)
+  {
+    two = one;
+    for (int i = 0; i < size && two->next != NULL; i++, two = two->next)
+    {
+      if (two->data != word[i])
+        return false;
+      if (two->data == word[i])
+        continue;
+      if (two->next->next == NULL)
+        continue;
+    }
+    // if (two->next != NULL)
+    // {
+    //   /* code */
+    // }
+
+    if (two->data == ' ' || two->data == '.' || two->data == ',' || two->data == word[size - 1])
+      loop++;
+    one = one->next;
+  }
+  return true;
+}
+
 int LinkedList::countWord(string word)
 {
-  int size = word.size(), countC, countW;
-
-  Node *one = head, *two;
+  int size = word.size(), countC, countW = 0;
+  Node *one = head;
   while (one != NULL)
   {
     if (one->data == word[0])
-    {
-      countC = 0;
-      two = one;
-
-      for (int i = 0; i < size && two->next != NULL; i++, two = two->next)
-      {
-        if (two->next->next == NULL)
-          countC++;
-        if (two->data == word[i])
-          countC++;
-      }
-      if (two->data == ' ' || two->data == '.' || two->data == ',' || two->data == word[size - 1])
-      {
-        if (countC == size)
-        {
-          countW++;
-        }
-      }
-    }
+      if (checkWord(word, one))
+        countW++;
     one = one->next;
   }
   return countW;
@@ -227,10 +223,31 @@ int LinkedList::countWord(string word)
 
 void LinkedList::changeWord(string oldWord, string newWord)
 {
+  if (oldWord == newWord)
+    return;
   int oldSize = oldWord.size(), newSize = newWord.size();
+  string aux;
+  Node *one = head, *two;
   if (oldSize == newSize)
   {
-    cout << "tamanhos iguais" << endl;
+    while (one != NULL)
+    {
+      if (one->data == oldWord[0])
+      {
+        aux = oldWord;
+        if (checkWord(aux, one))
+        {
+          two = one;
+          for (int i = 0; i < oldSize && two != NULL; i++, two = two->next)
+          {
+            two->data = aux[i] = newWord[i];
+            if (two->next == NULL)
+              two->data = newWord[oldSize - 1];
+          }
+        }
+      }
+      one = one->next;
+    }
   }
   else if (oldSize > newSize)
   {

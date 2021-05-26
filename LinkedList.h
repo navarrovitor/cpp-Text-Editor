@@ -15,7 +15,6 @@ public:
   Data frontValue();
   Data backValue();
 
-  void addInEmpty(Data data);
   void addFront(Data data);
   void addBack(Data data);
   void addInPosition(Data data, int position);
@@ -27,7 +26,7 @@ public:
 
   void print();
 
-  // bool checkWord(string word);
+  bool checkWord(string word, Node *startingPoint);
   int countWord(string word);
   void changeWord(string oldWord, string newWord);
 };

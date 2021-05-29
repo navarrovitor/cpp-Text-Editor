@@ -2,6 +2,7 @@
 
 Node::Node(char character)
 {
+  prev = NULL;
   element = character;
-  prev = next = NULL;
+  next = NULL;
 }

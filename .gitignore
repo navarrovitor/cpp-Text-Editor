@@ -3,7 +3,10 @@
 *.out
 *.app
 vscode/
+trashNode.h
+trashNode.cpp
+trash.h
+trash.cpp
+mainTrash.cpp
 main
-fullText.txt
 LinkedList
-bernardo

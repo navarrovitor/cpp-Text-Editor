@@ -11,6 +11,9 @@ private:
 
 public:
   LinkedList();
+  int header();
+  int trailer();
+  int nOfNodes();
 
   /* front ... position n ... back */
   void insertHead(char element);

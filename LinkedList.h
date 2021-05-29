@@ -13,12 +13,12 @@ public:
   LinkedList();
 
   /* front ... position n ... back */
-  void insertFront(char element);
-  void insertBack(char element);
+  void insertHead(char element);
+  void insertTail(char element);
   void insertInPosition(int position, char element);
 
-  void removeFront();
-  void removeBack();
+  void removeHead();
+  void removeTail();
   void removeInPosition(int position);
 
   void loadTxt(fstream text);

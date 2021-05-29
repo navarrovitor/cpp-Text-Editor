@@ -18,12 +18,12 @@ public:
   int nOfNodes();
 
   /* front ... position n ... back */
-  // void insertHead(char element);
-  // void insertTail(char element);
+  void insertAtHead(char element);
+  // void insertAtTail(char element);
   // void insertInPosition(int position, char element);
 
-  // void removeHead();
-  // void removeTail();
+  // void removeAtHead();
+  // void removeAtTail();
   // void removeInPosition(int position);
 
   // void loadTxt(fstream text);

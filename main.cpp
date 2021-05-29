@@ -19,7 +19,9 @@ int main()
     list.addBack(character);
   }
 
-  list.print();
+  cout << list.countWord("inteligencia") << endl;
+
+  // list.print();
 
   text.close();
 

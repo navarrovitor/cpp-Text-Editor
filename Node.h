@@ -13,9 +13,17 @@ private:
   Node *next;
   char element;
 
-  friend class LinkedList;
+  // friend class LinkedList;
 
 public:
-  Node(char character);
+  Node(char);
+
+  char getElement();
+  Node *getPrev();
+  Node *getNext();
+
+  void setElement(char);
+  void setPrev(Node *);
+  void setNext(Node *);
 };
 #endif

@@ -20,23 +20,23 @@ bool stopCharacter(char character)
 
 bool LinkedList::empty() { return head == NULL; }
 
-int LinkedList::header() { return empty() ? -1 : head->element; }
+int LinkedList::header() { return empty() ? -1 : head->getElement(); }
 
-int LinkedList::trailer() { return empty() ? -1 : tail->element; }
+int LinkedList::trailer() { return empty() ? -1 : tail->getElement(); }
 
 int LinkedList::nOfNodes() { return quantityOfNodes; }
 
 void LinkedList::printList()
 {
   cout << "[ ";
-  for (Node *indicator = head; indicator != NULL; indicator = indicator->next)
+  for (Node *indicator = head; indicator != NULL; indicator = indicator->getNext())
   {
-    if (indicator->next == NULL)
+    if (indicator->getNext() == NULL)
     {
-      cout << indicator->element;
+      cout << indicator->getElement();
       break;
     }
-    cout << indicator->element << ", ";
+    cout << indicator->getElement() << ", ";
   }
   cout << " ]" << endl;
 }
@@ -45,9 +45,9 @@ void LinkedList::insertAtHead(char element)
 {
   Node *newNode = new Node(element);
   if (!empty())
-    head->prev = newNode;
-  newNode->next = head;
-  newNode->prev = NULL;
+    head->setPrev(newNode);
+  newNode->setNext(head);
+  newNode->setPrev(NULL);
   head = newNode;
   if (tail == NULL)
     tail = newNode;
@@ -59,8 +59,8 @@ void LinkedList::insertAtTail(char element)
   if (empty())
     return this->insertAtHead(element);
   Node *newNode = new Node(element);
-  tail->next = newNode;
-  newNode->prev = tail;
+  tail->setNext(newNode);
+  newNode->setPrev(tail);
   tail = newNode;
   quantityOfNodes++;
 }

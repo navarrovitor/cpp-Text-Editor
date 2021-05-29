@@ -19,13 +19,13 @@ public:
 
   void printList();
 
-  void insertAtHead(char element);
-  void insertAtTail(char element);
-  int insertAtPosition(int position, char element);
+  void insertAtHead(char);
+  int insertAtPosition(int, char);
+  void insertAtTail(char);
 
-  // void removeAtHead();
-  // void removeAtTail();
-  // void removeInPosition(int position);
+  char removeHead();
+  char removePosition(int);
+  char removeTail();
 
   // void loadTxt(fstream text);
   // void countWord(string word);

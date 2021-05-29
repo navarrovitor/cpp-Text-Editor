@@ -54,17 +54,6 @@ void LinkedList::insertAtHead(char element)
   quantityOfNodes++;
 }
 
-void LinkedList::insertAtTail(char element)
-{
-  if (empty())
-    return this->insertAtHead(element);
-  Node *newNode = new Node(element);
-  tail->setNext(newNode);
-  newNode->setPrev(tail);
-  tail = newNode;
-  quantityOfNodes++;
-}
-
 int LinkedList::insertAtPosition(int position, char element)
 {
   int limit = nOfNodes() + 1, half = nOfNodes() / 2, size = nOfNodes();
@@ -99,4 +88,89 @@ int LinkedList::insertAtPosition(int position, char element)
   indicator->setPrev(newNode);
   quantityOfNodes++;
   return position;
+}
+
+void LinkedList::insertAtTail(char element)
+{
+  if (empty())
+    return this->insertAtHead(element);
+  Node *newNode = new Node(element);
+  tail->setNext(newNode);
+  newNode->setPrev(tail);
+  tail = newNode;
+  quantityOfNodes++;
+}
+
+char LinkedList::removeHead()
+{
+  int character = head->getElement();
+  if (empty())
+    return -1;
+  if (head->getNext() == NULL)
+  {
+    head = NULL;
+    tail = NULL;
+  }
+  else
+  {
+    head = head->getNext();
+    head->setPrev(NULL);
+  }
+  quantityOfNodes--;
+  return character;
+}
+
+char LinkedList::removePosition(int position)
+{
+  int limit = nOfNodes() + 1, half = nOfNodes() / 2, size = nOfNodes();
+  if (empty() || position < 1 || position > limit)
+    return -1;
+  if (position == 1)
+    return this->removeHead();
+  if (position == size)
+    return this->removeTail();
+  Node *indicator, *helper;
+  int character;
+  if (position <= half)
+  {
+    indicator = head;
+    for (int j = 0; j < position - 2; j++)
+      indicator = indicator->getNext();
+    character = indicator->getNext()->getElement();
+    helper = indicator->getNext()->getNext();
+    helper->setPrev(indicator);
+    indicator->setNext(helper);
+  }
+  else
+  {
+    indicator = tail;
+    for (int j = size; j > position + 1; j--)
+      indicator = indicator->getPrev();
+    character = indicator->getPrev()->getElement();
+    helper = indicator->getPrev()->getPrev();
+    helper->setNext(indicator);
+    indicator->setPrev(helper);
+  }
+  quantityOfNodes--;
+  return character;
+}
+
+char LinkedList::removeTail()
+{
+  int character = tail->getElement();
+  if (empty())
+    return -1;
+  if (head->getNext() == NULL)
+  {
+    character = head->getElement();
+    head = NULL;
+    tail = NULL;
+  }
+  else
+  {
+    tail = tail->getPrev();
+    tail->setNext(NULL);
+  }
+  quantityOfNodes--;
+  return character;
 }

@@ -17,6 +17,8 @@ public:
   int trailer();
   int nOfNodes();
 
+  void printList();
+
   void insertAtHead(char element);
   void insertAtTail(char element);
   // void insertInPosition(int position, char element);
@@ -28,6 +30,5 @@ public:
   // void loadTxt(fstream text);
   // void countWord(string word);
   // void changeWord(string oldWord, string newWord);
-  // void printList();
   // void saveTxt(fstream text);
 };

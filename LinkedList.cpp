@@ -7,6 +7,17 @@ LinkedList::LinkedList()
   quantityOfNodes = 0;
 }
 
+bool stopCharacter(char character)
+{
+  char stopChar[] = {'.', ',', ' '};
+  for (int i = 0; i < 3; i++)
+  {
+    if (character == stopChar[i])
+      return true;
+  }
+  return false;
+}
+
 bool LinkedList::empty() { return head == NULL; }
 
 int LinkedList::header() { return empty() ? -1 : head->element; }
@@ -14,6 +25,21 @@ int LinkedList::header() { return empty() ? -1 : head->element; }
 int LinkedList::trailer() { return empty() ? -1 : tail->element; }
 
 int LinkedList::nOfNodes() { return quantityOfNodes; }
+
+void LinkedList::printList()
+{
+  cout << "[ ";
+  for (Node *indicator = head; indicator != NULL; indicator = indicator->next)
+  {
+    if (indicator->next == NULL)
+    {
+      cout << indicator->element;
+      break;
+    }
+    cout << indicator->element << ", ";
+  }
+  cout << " ]" << endl;
+}
 
 void LinkedList::insertAtHead(char element)
 {

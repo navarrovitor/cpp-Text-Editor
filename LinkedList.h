@@ -22,7 +22,8 @@ public:
   void removeInPosition(int position);
 
   void loadTxt(fstream text);
-  void saveTxt(fstream text);
   void countWord(string word);
   void changeWord(string oldWord, string newWord);
+  void printList();
+  void saveTxt(fstream text);
 };

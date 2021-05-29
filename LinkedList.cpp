@@ -3,18 +3,9 @@
 
 LinkedList::LinkedList()
 {
-  head = NULL;
-  tail = NULL;
+  head = tail = NULL;
   size = 0;
 }
-
-bool LinkedList::empty() { return head == NULL; }
-
-int LinkedList::qty() { return size; }
-
-Data LinkedList::frontValue() { return head->data; }
-
-Data LinkedList::backValue() { return tail->data; }
 
 void LinkedList::addFront(Data data)
 {
@@ -42,104 +33,81 @@ void LinkedList::addBack(Data data)
 
 void LinkedList::addInPosition(Data data, int position)
 {
+  Node *node = new Node(data), *aux;
   if (position < 1)
-  {
-    cout << "A posição tem de ser maior ou igual a 1" << endl;
     return;
-  }
   if (position > size + 1)
-  {
-    cout << "Essa posição não existe. A lista tem " << size << " elementos" << endl;
     return;
-  }
   if (position == 1)
   {
     addFront(data);
     return;
   }
-  Node *node = new Node(data), *aux = head;
-  for (Data i = 1; i < position - 1; i++)
-    aux = aux->next;
-  node->next = aux->next;
-  node->prev = aux;
-  aux->next = node;
-  if (aux == tail)
-    tail = node;
-  size++;
-  return;
-}
-
-bool LinkedList::checkRemove()
-{
-  if (empty())
+  if (position == size + 1)
   {
-    cout << "A lista está vazia, não há o que remover." << endl;
-    return false;
+    addBack(data);
+    return;
   }
-  if (size == 1)
+  if (position <= size / 2)
   {
-    head = NULL;
-    tail = NULL;
-    size--;
-    return false;
+    aux = head;
+    for (int i = 1; i < position; i++)
+      aux = aux->next;
   }
   else
-    return true;
+  {
+    aux = tail;
+    for (int i = size; i > position; i--)
+      aux = aux->prev;
+  }
+  node->next = aux;
+  node->prev = aux->prev;
+  aux->prev->next = node;
+  aux->prev = node;
+  size++;
 }
 
 void LinkedList::removeFront()
 {
-  if (!checkRemove())
+  if (head == NULL)
     return;
-  Node *aux = head;
-  head = head->next;
-  delete aux;
+  if (head->next == NULL)
+    head = tail = NULL;
+  else
+  {
+    head = head->next;
+    head->prev = NULL;
+  }
   size--;
 }
 
 void LinkedList::removeBack()
 {
-  if (!checkRemove())
+  if (head == NULL)
     return;
-  Node *aux = tail->prev, *aux2 = tail;
-  aux->next = NULL;
-  tail = aux;
-  delete aux2;
-  size--;
-}
-
-void LinkedList::removeNode(Node *node)
-{
-  if (head == NULL || node == NULL)
-    return;
-  if (head == node)
-    head = node->next;
-  if (node->next != NULL)
+  if (head->next == NULL)
+    head = tail = NULL;
+  else
   {
-    tail = node->prev;
-    node->next->prev = node->prev;
+    tail = tail->prev;
+    tail->next = NULL;
   }
-  if (node->prev != NULL)
-    node->prev->next = node->next;
-  delete node;
   size--;
 }
 
 void LinkedList::removeInPosition(int position)
 {
-  if (empty())
+  Node *node, *aux;
+  if (head == NULL)
   {
-    cout << "A lista está vazia, não há o que remover." << endl;
     return;
   }
   if (position < 1)
   {
-    cout << "A posição tem de ser maior ou igual a 1." << endl;
     return;
   }
-  if (position > size)
+  if (position > size + 1)
   {
-    cout << "Essa posição não existe. A lista tem " << size << " elementos" << endl;
     return;
   }
   if (position == 1)
@@ -152,23 +120,37 @@ void LinkedList::removeInPosition(int position)
     removeBack();
     return;
   }
-
-  Node *aux = head;
-  for (Data i = 1; aux != NULL && i < position; i++)
-    aux = aux->next;
-  removeNode(aux);
+  if (position <= size / 2)
+  {
+    node = head;
+    for (int i = 0; i < position - 2; i++)
+      node = node->next;
+    aux = node->next->next;
+    aux->prev = node;
+    node->next = aux;
+  }
+  else
+  {
+    node = tail;
+    for (int i = size; i > position + 1; i--)
+      node = node->prev;
+    aux = node->prev->prev;
+    aux->next = node;
+    node->prev = aux;
+  }
+  size--;
   return;
 }
 
 void LinkedList::print()
 {
   Node *aux = head;
-  cout << "[ ";
+  cout << "[";
   while (aux != NULL)
   {
     if (aux->next == NULL)
     {
-      cout << aux->data << ' ';
+      cout << aux->data;
       break;
     }
     cout << aux->data << ", ";
@@ -177,84 +159,64 @@ void LinkedList::print()
   cout << "]" << endl;
 }
 
-bool LinkedList::checkWord(string word, Node *startingPoint)
+bool stopChar(char character)
 {
-  if (startingPoint->next == NULL)
-    return false;
-  int size = word.size(), loop = 0;
-  Node *one = startingPoint, *two;
-  while (loop < 1)
+  char stopCharacter[] = {'.', ',', ' '};
+  for (int i = 0; i < 3; i++)
   {
-    two = one;
-    for (int i = 0; i < size && two->next != NULL; i++, two = two->next)
-    {
-      if (two->data != word[i])
-        return false;
-      if (two->data == word[i])
-        continue;
-      if (two->next->next == NULL)
-        continue;
-    }
-    // if (two->next != NULL)
-    // {
-    //   /* code */
-    // }
-
-    if (two->data == ' ' || two->data == '.' || two->data == ',' || two->data == word[size - 1])
-      loop++;
-    one = one->next;
+    if (character == stopCharacter[i])
+      return true;
   }
-  return true;
+  return false;
 }
 
 int LinkedList::countWord(string word)
 {
-  int size = word.size(), countC, countW = 0;
-  Node *one = head;
-  while (one != NULL)
+  int countC = 0, countW = 0;
+  char character;
+  for (Node *node = head; node != NULL; node = node->next)
   {
-    if (one->data == word[0])
-      if (checkWord(word, one))
+    character = node->data;
+    if (stopChar(character))
+    {
+      if (countC == word.size())
         countW++;
-    one = one->next;
+      countC = 0;
+    }
+    else
+    {
+      if (character == word[countC])
+        countC++;
+    }
   }
   return countW;
 }
 
 void LinkedList::changeWord(string oldWord, string newWord)
 {
-  if (oldWord == newWord)
-    return;
-  int oldSize = oldWord.size(), newSize = newWord.size();
-  string aux;
-  Node *one = head, *two;
-  if (oldSize == newSize)
+  int countC = 0, position = 1, aux;
+  char character;
+  for (Node *node = head; node != NULL; node = node->next, position++)
   {
-    while (one != NULL)
+    character = node->data;
+    if (stopChar(character))
     {
-      if (one->data == oldWord[0])
+      if (countC == oldWord.size())
       {
-        aux = oldWord;
-        if (checkWord(aux, one))
-        {
-          two = one;
-          for (int i = 0; i < oldSize && two != NULL; i++, two = two->next)
-          {
-            two->data = aux[i] = newWord[i];
-            if (two->next == NULL)
-              two->data = newWord[oldSize - 1];
-          }
-        }
+        aux = position - countC;
+        for (int i = 0; i < countC; i++)
+          removeInPosition(aux);
+        for (int i = 0; i < newWord.size(); i++, aux++)
+          addInPosition(newWord[i], aux);
+        position = aux;
+        countC++;
       }
-      one = one->next;
+      countC = 0;
     }
-  }
-  else if (oldSize > newSize)
-  {
-    cout << "a palavra velha é maior" << endl;
-  }
-  else
-  {
-    cout << "a palavra nova é maior" << endl;
+    else
+    {
+      if (character == oldWord[countC])
+        countC++;
+    }
   }
 }

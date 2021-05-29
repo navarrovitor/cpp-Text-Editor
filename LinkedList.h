@@ -10,23 +10,18 @@ private:
 public:
   LinkedList();
 
-  bool empty();
-  int qty();
-  Data frontValue();
-  Data backValue();
-
   void addFront(Data data);
   void addBack(Data data);
   void addInPosition(Data data, int position);
-  bool checkRemove();
   void removeFront();
   void removeBack();
-  void removeNode(Node *node);
   void removeInPosition(int position);
 
   void print();
 
-  bool checkWord(string word, Node *startingPoint);
   int countWord(string word);
   void changeWord(string oldWord, string newWord);
+
+  int troca(Node *c, int pos, int i, string s);
+  int trocaPalavra(string s, string stroca);
 };

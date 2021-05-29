@@ -9,7 +9,8 @@ using namespace std;
 class Node
 {
 private:
-  Node *prev, *next;
+  Node *prev;
+  Node *next;
   char element;
 
   friend class LinkedList;

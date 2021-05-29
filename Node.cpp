@@ -3,6 +3,6 @@
 Node::Node(char character)
 {
   prev = NULL;
-  element = character;
   next = NULL;
+  element = character;
 }

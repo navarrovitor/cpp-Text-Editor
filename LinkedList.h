@@ -17,9 +17,8 @@ public:
   int trailer();
   int nOfNodes();
 
-  /* front ... position n ... back */
   void insertAtHead(char element);
-  // void insertAtTail(char element);
+  void insertAtTail(char element);
   // void insertInPosition(int position, char element);
 
   // void removeAtHead();

@@ -27,3 +27,14 @@ void LinkedList::insertAtHead(char element)
     tail = newNode;
   quantityOfNodes++;
 }
+
+void LinkedList::insertAtTail(char element)
+{
+  if (empty())
+    return this->insertAtHead(element);
+  Node *newNode = new Node(element);
+  tail->next = newNode;
+  newNode->prev = tail;
+  tail = newNode;
+  quantityOfNodes++;
+}

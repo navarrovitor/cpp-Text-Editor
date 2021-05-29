@@ -21,7 +21,7 @@ public:
 
   void insertAtHead(char element);
   void insertAtTail(char element);
-  // void insertInPosition(int position, char element);
+  int insertAtPosition(int position, char element);
 
   // void removeAtHead();
   // void removeAtTail();

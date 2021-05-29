@@ -64,3 +64,39 @@ void LinkedList::insertAtTail(char element)
   tail = newNode;
   quantityOfNodes++;
 }
+
+int LinkedList::insertAtPosition(int position, char element)
+{
+  int limit = nOfNodes() + 1, half = nOfNodes() / 2, size = nOfNodes();
+  if (position < 1 || position > limit)
+    return -1;
+  if (position == 1)
+  {
+    insertAtHead(element);
+    return 1;
+  }
+  if (position == limit)
+  {
+    insertAtTail(element);
+    return position;
+  }
+  Node *newNode = new Node(element), *indicator;
+  if (position <= half)
+  {
+    indicator = head;
+    for (int j = 1; j < position; j++)
+      indicator = indicator->getNext();
+  }
+  else
+  {
+    indicator = tail;
+    for (int j = size; j > position; j--)
+      indicator = indicator->getPrev();
+  }
+  newNode->setNext(indicator);
+  newNode->setPrev(indicator->getPrev());
+  indicator->getPrev()->setNext(newNode);
+  indicator->setPrev(newNode);
+  quantityOfNodes++;
+  return position;
+}

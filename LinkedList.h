@@ -11,22 +11,24 @@ private:
 
 public:
   LinkedList();
+
+  bool empty();
   int header();
   int trailer();
   int nOfNodes();
 
   /* front ... position n ... back */
-  void insertHead(char element);
-  void insertTail(char element);
-  void insertInPosition(int position, char element);
+  // void insertHead(char element);
+  // void insertTail(char element);
+  // void insertInPosition(int position, char element);
 
-  void removeHead();
-  void removeTail();
-  void removeInPosition(int position);
+  // void removeHead();
+  // void removeTail();
+  // void removeInPosition(int position);
 
-  void loadTxt(fstream text);
-  void countWord(string word);
-  void changeWord(string oldWord, string newWord);
-  void printList();
-  void saveTxt(fstream text);
+  // void loadTxt(fstream text);
+  // void countWord(string word);
+  // void changeWord(string oldWord, string newWord);
+  // void printList();
+  // void saveTxt(fstream text);
 };

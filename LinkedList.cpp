@@ -7,8 +7,10 @@ LinkedList::LinkedList()
   quantityOfNodes = 0;
 }
 
-int LinkedList::header() { return head->element; }
+bool LinkedList::empty() { return head == NULL; }
 
-int LinkedList::trailer() { return tail->element; }
+int LinkedList::header() { return empty() ? -1 : head->element; }
+
+int LinkedList::trailer() { return empty() ? -1 : tail->element; }
 
 int LinkedList::nOfNodes() { return quantityOfNodes; }

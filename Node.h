@@ -15,6 +15,6 @@ private:
   friend class LinkedList;
 
 public:
-  Node(char d);
+  Node(char character);
 };
 #endif

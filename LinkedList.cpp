@@ -174,3 +174,25 @@ char LinkedList::removeTail()
   quantityOfNodes--;
   return character;
 }
+
+int LinkedList::countWord(string word)
+{
+  int countCharacter = 0, countWord = 0;
+  char character;
+  for (Node *indicator = head; indicator != NULL; indicator = indicator->getNext())
+  {
+    character = indicator->getElement();
+    if (stopCharacter(character))
+    {
+      if (countCharacter == word.size())
+        countWord++;
+      countCharacter = 0;
+    }
+    else
+    {
+      if (character == word[countCharacter])
+        countCharacter++;
+    }
+  }
+  return countWord;
+}

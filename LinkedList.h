@@ -28,7 +28,7 @@ public:
   char removeTail();
 
   // void loadTxt(fstream text);
-  // void countWord(string word);
+  int countWord(string word);
   // void changeWord(string oldWord, string newWord);
   // void saveTxt(fstream text);
 };

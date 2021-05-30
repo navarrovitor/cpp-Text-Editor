@@ -6,17 +6,24 @@ int main()
 {
   LinkedList linkedList;
 
+  string file = "inteligenciaEmocional.txt";
+
   char character;
 
-  fstream textFile("inteligenciaEmocional.txt");
+  fstream textFileIn(file);
 
-  while (textFile >> noskipws >> character)
+  while (textFileIn >> noskipws >> character)
   {
     linkedList.insertAtTail(character);
   }
 
   linkedList.printList();
 
-  textFile.close();
+  textFileIn.close();
+
+  fstream textFileOut(file, ios::out | ios::trunc);
+  cin >> character;
+  textFileOut.put(character);
+  textFileOut.close();
   return 0;
 }

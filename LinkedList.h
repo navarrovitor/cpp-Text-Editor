@@ -1,5 +1,3 @@
-#include <fstream>
-
 #include "Node.h"
 
 class LinkedList
@@ -27,8 +25,7 @@ public:
   char removePosition(int);
   char removeTail();
 
-  // void loadTxt(fstream text);
-  int countWord(string word);
-  // void changeWord(string oldWord, string newWord);
-  // void saveTxt(fstream text);
+  int countWord(string);
+  // void changeWord(string, string);
+  // void saveTxt(fstream);
 };

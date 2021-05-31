@@ -8,25 +8,28 @@ int main()
 
   linkedList.loadText(file);
 
-  cout << "Bem vindo ao editor de texto C++!" << endl
-       << "Com um arquivo " << file << " de base, você pode:" << endl
+  cout << endl
+       << "Bem vindo ao editor de texto C++!" << endl
+       << endl
+       << "Com o arquivo " << file << " de base, você pode:" << endl
        << "- Descobrir o número de vezes que uma palavra aparece no mesmo" << endl
        << "- Mudar as palavras que você desejar" << endl
        << "- Imprimir seu texto no formato de lista ligada no terminal" << endl
-       << "- Salvar seu arquivo alterado" << endl
+       << "- Salvar seu arquivo alterado"
        << endl;
 
   while (run != 1)
   {
-    cout << "---------------------------------------------" << endl
+    cout << endl
+         << "---------------------------------------------" << endl
          << "Escolha uma opção:" << endl
          << "1 - Contar número de ocorrências de uma palavra" << endl
          << "2 - Trocar palavra" << endl
          << "3 - Imprimir lista" << endl
          << "4 - Salvar suas alterações no arquivo .txt (sai do programa automaticamente)" << endl
          << "5 - Sair do programa" << endl
-         << endl
          << "---------------------------------------------" << endl
+         << endl
          << "Informe sua escolha:" << endl;
     cin >> opt;
 

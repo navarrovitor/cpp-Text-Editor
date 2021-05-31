@@ -1,5 +1,8 @@
 #include "LinkedList.h"
 
+#include <cstring>
+#include <typeinfo>
+
 LinkedList::LinkedList()
 {
   head = NULL;
@@ -195,4 +198,84 @@ int LinkedList::countWord(string word)
     }
   }
   return countWord;
+}
+
+int LinkedList::swap(char oldWord[], char newWord[], int wordSize)
+{
+  Node *aux = head;
+  Node *troca = head;
+  int inicio = 0;
+  int count = 0;
+  int countpalavra = 0;
+  for (int i = 0; i < nOfNodes(); i++)
+  {
+    if (tolower((aux->getElement())) == tolower(oldWord[0]))
+    {
+      for (int j = 0; j < wordSize; j++)
+      {
+        if (tolower((aux->getElement())) == tolower(oldWord[j]))
+        {
+          count++;
+          i++;
+          aux = aux->getNext();
+        }
+        else
+        {
+          count = 0;
+          break;
+        }
+      }
+      if ((count == wordSize) && ((aux->getElement() == ' ') || (aux->getElement() == trailer()) || (aux->getElement() == '.') || (aux->getElement() == ',')))
+      {
+        inicio = (i - count) + 1; //Semelhante a funcao de cima, encontra a palavra e retornara o inicio dela para podermos usar nas trocas.
+        return inicio;
+      }
+      else
+      {
+        count = 0;
+      }
+      if (aux->getElement() == oldWord[0])
+      {
+        i--;
+        continue;
+      }
+    }
+    aux = aux->getNext();
+  }
+  return inicio;
+}
+
+void LinkedList::changeWord(string oldWord, string newWord)
+{
+  string palavraTrocada = oldWord;
+  string novaPalavra = newWord;
+
+  char palavraTrocadachar[palavraTrocada.length()]; //Passamos o valor da palavra para um vetor.
+  for (int i = 0; i < palavraTrocada.length(); i++)
+  {
+    palavraTrocadachar[i] = palavraTrocada[i];
+  }
+
+  string novaPalavraE = novaPalavra;
+
+  char novaPalavrachar[novaPalavraE.length()]; //Passamos o valor da nova palavra para um vetor.
+  for (int i = 0; i < novaPalavraE.length(); i++)
+  {
+    novaPalavrachar[i] = novaPalavraE[i];
+  }
+
+  int qtdPalavra = countWord(palavraTrocada); //Encontra a quantidade de palavras iguais para serem trocadas.
+  for (int j = 0; j < qtdPalavra; j++)
+  {                                                                                  //Função que remove a palavra antiga e adiciona a nova palavra
+    int inicio = swap(palavraTrocadachar, novaPalavrachar, palavraTrocada.length()); //Função para pegar a posição da primeira letra de cada palavra que desejamos trocar.
+    for (int tWord = 0; tWord < palavraTrocada.length(); tWord++)
+    {
+      removePosition(inicio); //Removemos o a palavra até ela terminar
+    }
+
+    for (int eWord = novaPalavra.length() - 1; eWord >= 0; eWord--)
+    {
+      insertAtPosition(inicio, novaPalavrachar[eWord]); //Adicionamos a nova palavra no lugar antigo.
+    }
+  }
 }

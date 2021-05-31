@@ -16,14 +16,14 @@ int main()
   {
     linkedList.insertAtTail(character);
   }
-
-  linkedList.printList();
-
   textFileIn.close();
 
   fstream textFileOut(file, ios::out | ios::trunc);
-  cin >> character;
-  textFileOut.put(character);
+  while (!linkedList.empty())
+  {
+    textFileOut.put(linkedList.removeHead());
+  }
+
   textFileOut.close();
   return 0;
 }

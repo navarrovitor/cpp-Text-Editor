@@ -1,7 +1,7 @@
 #include "LinkedList.h"
 
 #include <cstring>
-#include <typeinfo>
+#include <fstream>
 
 LinkedList::LinkedList()
 {
@@ -176,6 +176,24 @@ char LinkedList::removeTail()
   }
   quantityOfNodes--;
   return character;
+}
+
+void LinkedList::loadText(string sourceFile)
+{
+  char character;
+  fstream textFileIn(sourceFile);
+  while (textFileIn >> noskipws >> character)
+    insertAtTail(character);
+  textFileIn.close();
+}
+
+void LinkedList::saveText(string sourceFile)
+{
+  fstream textFileOut(sourceFile, ios::out | ios::trunc);
+  while (!empty())
+    textFileOut.put(removeHead());
+
+  textFileOut.close();
 }
 
 int LinkedList::countWord(string word)

@@ -25,6 +25,9 @@ public:
   char removePosition(int);
   char removeTail();
 
+  void loadText(string);
+  void saveText(string);
+
   int countWord(string);
   int swap(char[], char[], int);
   void changeWord(string, string);

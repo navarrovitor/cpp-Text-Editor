@@ -14,12 +14,10 @@ int main()
     linkedList.insertAtTail(character);
   textFileIn.close();
 
-  linkedList.changeWord("percepsao", "percepcao");
-  cout << linkedList.countWord("percepcao") << endl;
-  // fstream textFileOut(file, ios::out | ios::trunc);
-  // while (!linkedList.empty())
-  //   textFileOut.put(linkedList.removeHead());
+  fstream textFileOut(file, ios::out | ios::trunc);
+  while (!linkedList.empty())
+    textFileOut.put(linkedList.removeHead());
 
-  // textFileOut.close();
+  textFileOut.close();
   return 0;
 }

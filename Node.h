@@ -13,8 +13,6 @@ private:
   Node *next;
   char element;
 
-  // friend class LinkedList;
-
 public:
   Node(char);
 

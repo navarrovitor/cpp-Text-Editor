@@ -1,13 +1,4 @@
 **/makefile
-*.exe
-*.out
-*.app
 vscode/
-trashNode.h
-trashNode.cpp
-trash.h
-trash.cpp
-mainTrash.cpp
-main
 LinkedList
-tests.cpp
+textFile.txt

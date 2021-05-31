@@ -42,6 +42,7 @@ When you first run main, a menu will pop up at your terminal, letting you do 4 t
 ```
 
 4. <b>Save</b>: Everything you changed on your linked list will be transferred to your text file back to the normal format.
+5. <b>Exit</b>: The program will be closed. Thanks for your visit!
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 

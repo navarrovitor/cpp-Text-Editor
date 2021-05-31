@@ -33,16 +33,17 @@ In your terminal, you just need to run it using the <b>make</b> command.
 
 When you first run main, a menu will pop up at your terminal, letting you do 4 things:
 
-1. <b>Count Word</b>: Given a chosen word, it'll show you the number of ocurrences of it in the text.
-2. <b>Change Word</b>: Given a chosen word to be changed and a word that will be the new one, it'll change everty ocurrence of that word into the new one you've written.
-3. <b>Print</b>: It'll print all the text in the doubly linked list format, e.g. given a sentence "I like to smile.", the same would appear in a doubly linked list format as:
+1. <b>Load</b>: The txt file will be loaded to the linked list.
+2. <b>Count Word</b>: Given a chosen word, it'll show you the number of ocurrences of it in the text.
+3. <b>Change Word</b>: Given a chosen word to be changed and a word that will be the new one, it'll change everty ocurrence of that word into the new one you've written.
+4. <b>Print</b>: It'll print all the text in the doubly linked list format, e.g. given a sentence "I like to smile.", the same would appear in a doubly linked list format as:
 
 ```
         [I, , l, i, k, e, , t, o, , s, m, i, l, e, .]
 ```
 
-4. <b>Save</b>: Everything you changed on your linked list will be transferred to your text file back to the normal format.
-5. <b>Exit</b>: The program will be closed. Thanks for your visit!
+5. <b>Save</b>: Everything you changed on your linked list will be transferred to your text file back to the normal format. The program will be closed automatically.
+6. <b>Exit</b>: The program will be closed. Thanks for your visit!
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 

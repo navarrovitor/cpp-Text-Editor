@@ -202,80 +202,61 @@ int LinkedList::countWord(string word)
 
 int LinkedList::swap(char oldWord[], char newWord[], int wordSize)
 {
-  Node *aux = head;
-  Node *troca = head;
-  int inicio = 0;
-  int count = 0;
-  int countpalavra = 0;
-  for (int i = 0; i < nOfNodes(); i++)
+  Node *helper = head;
+  int beggining = 0, counter = 0;
+  for (int i = 0; i < nOfNodes(); i++, helper = helper->getNext())
   {
-    if (tolower((aux->getElement())) == tolower(oldWord[0]))
+    bool checker = tolower(helper->getElement()) == tolower(oldWord[0]);
+    if (checker)
     {
       for (int j = 0; j < wordSize; j++)
       {
-        if (tolower((aux->getElement())) == tolower(oldWord[j]))
+        if (tolower((helper->getElement())) == tolower(oldWord[j]))
         {
-          count++;
+          counter++;
           i++;
-          aux = aux->getNext();
+          helper = helper->getNext();
         }
         else
         {
-          count = 0;
+          counter = 0;
           break;
         }
       }
-      if ((count == wordSize) && ((aux->getElement() == ' ') || (aux->getElement() == trailer()) || (aux->getElement() == '.') || (aux->getElement() == ',')))
+      if (((helper->getElement() == trailer()) || stopCharacter(helper->getElement())) && (counter == wordSize))
       {
-        inicio = (i - count) + 1; //Semelhante a funcao de cima, encontra a palavra e retornara o inicio dela para podermos usar nas trocas.
-        return inicio;
+        beggining = (i - counter) + 1;
+        return beggining;
       }
       else
-      {
-        count = 0;
-      }
-      if (aux->getElement() == oldWord[0])
+        counter = 0;
+      if (checker)
       {
         i--;
         continue;
       }
     }
-    aux = aux->getNext();
   }
-  return inicio;
+  return beggining;
 }
 
 void LinkedList::changeWord(string oldWord, string newWord)
 {
-  string palavraTrocada = oldWord;
-  string novaPalavra = newWord;
+  int i, oldSize = oldWord.length(), newSize = newWord.length(), wordOcurrences = countWord(oldWord);
+  char oldWordInChar[oldSize], newWordInChar[newSize];
 
-  char palavraTrocadachar[palavraTrocada.length()]; //Passamos o valor da palavra para um vetor.
-  for (int i = 0; i < palavraTrocada.length(); i++)
+  for (i = 0; i < oldSize; i++)
+    oldWordInChar[i] = oldWord[i];
+  for (i = 0; i < newSize; i++)
+    newWordInChar[i] = newWord[i];
+
+  for (int j = 0; j < wordOcurrences; j++)
   {
-    palavraTrocadachar[i] = palavraTrocada[i];
-  }
+    int beggining = swap(oldWordInChar, newWordInChar, oldSize);
 
-  string novaPalavraE = novaPalavra;
-
-  char novaPalavrachar[novaPalavraE.length()]; //Passamos o valor da nova palavra para um vetor.
-  for (int i = 0; i < novaPalavraE.length(); i++)
-  {
-    novaPalavrachar[i] = novaPalavraE[i];
-  }
-
-  int qtdPalavra = countWord(palavraTrocada); //Encontra a quantidade de palavras iguais para serem trocadas.
-  for (int j = 0; j < qtdPalavra; j++)
-  {                                                                                  //Função que remove a palavra antiga e adiciona a nova palavra
-    int inicio = swap(palavraTrocadachar, novaPalavrachar, palavraTrocada.length()); //Função para pegar a posição da primeira letra de cada palavra que desejamos trocar.
-    for (int tWord = 0; tWord < palavraTrocada.length(); tWord++)
-    {
-      removePosition(inicio); //Removemos o a palavra até ela terminar
-    }
-
-    for (int eWord = novaPalavra.length() - 1; eWord >= 0; eWord--)
-    {
-      insertAtPosition(inicio, novaPalavrachar[eWord]); //Adicionamos a nova palavra no lugar antigo.
-    }
+    for (i = 0; i < oldSize; i++)
+      removePosition(beggining);
+    for (i = newSize - 1; i >= 0; i--)
+      insertAtPosition(beggining, newWordInChar[i]);
   }
 }

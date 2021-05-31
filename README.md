@@ -16,9 +16,7 @@
 
 ## 🧐 About <a name = "about"></a>
 
-<br>
 This is a project that turns a text file into a doubly linked list. You can then read it in a doubly linked list format, count how many times a word appears, and swap any word you like to the one of your preference. In the end, it lets you save your changes into your previoulsy loaded file.
-<br>
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -40,7 +38,7 @@ When you first run main, a menu will pop up at your terminal, letting you do 4 t
 3. <b>Print</b>: It'll print all the text in the doubly linked list format, e.g. given a sentence "I like to smile.", the same would appear in a doubly linked list format as:
 
 ```
-[I, , l, i, k, e, , t, o, , s, m, i, l, e, .]
+        [I, , l, i, k, e, , t, o, , s, m, i, l, e, .]
 ```
 
 4. <b>Save</b>: Everything you changed on your linked list will be transferred to your text file back to the normal format.

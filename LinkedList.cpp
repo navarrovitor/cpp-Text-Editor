@@ -224,8 +224,7 @@ int LinkedList::swap(char oldWord[], char newWord[], int wordSize)
   int beggining = 0, counter = 0;
   for (int i = 0; i < nOfNodes(); i++, helper = helper->getNext())
   {
-    bool checker = tolower(helper->getElement()) == tolower(oldWord[0]);
-    if (checker)
+    if (tolower(helper->getElement()) == tolower(oldWord[0]))
     {
       for (int j = 0; j < wordSize; j++)
       {
@@ -248,7 +247,7 @@ int LinkedList::swap(char oldWord[], char newWord[], int wordSize)
       }
       else
         counter = 0;
-      if (checker)
+      if (tolower(helper->getElement()) == tolower(oldWord[0]))
       {
         i--;
         continue;

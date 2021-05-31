@@ -39,9 +39,9 @@ int main()
       cout << "Qual palavra você quer contar?" << endl;
       cin >> word;
       if (linkedList.countWord(oldWord) == 1)
-        cout << "A palavra " << oldWord << " aparece uma vez." << endl;
+        cout << "A palavra " << word << " aparece uma vez." << endl;
       else
-        cout << "A palavra " << oldWord << " aparece " << linkedList.countWord(oldWord) << " vezes." << endl;
+        cout << "A palavra " << word << " aparece " << linkedList.countWord(word) << " vezes." << endl;
       break;
     case 2:
       cout << "Qual palavra você quer trocar?" << endl;
@@ -57,7 +57,10 @@ int main()
         cout << "A palavra " << oldWord << " aparece uma vez." << endl;
       else
         cout << "A palavra " << oldWord << " aparece " << linkedList.countWord(oldWord) << " vezes." << endl;
-      cout << "Todas as ocorrências da mesma foram trocadas por " << newWord << '.' << endl;
+      linkedList.changeWord(oldWord, newWord);
+      cout << "Todas as ocorrências da mesma foram trocadas por " << newWord << '.' << endl
+           << "Aqui está a lista:" << endl;
+      linkedList.printList();
       break;
     case 3:
       cout << "A lista se encontra assim:" << endl;

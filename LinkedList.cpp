@@ -214,7 +214,7 @@ int LinkedList::countWord(string word)
         {
           countCharacter++;
           indicator = indicator->getNext();
-          check = (indicator->getPrev()->getElement() == ' ');
+          check = (indicator->getPrev()->getElement() == ' ' || indicator->getPrev()->getElement() == '\n');
         }
       }
       if ((stopCharacter(indicator->getElement()) || (indicator == tail)) && countCharacter == word.length())
@@ -228,7 +228,7 @@ int LinkedList::countWord(string word)
     indicator = indicator->getNext();
     if (indicator == NULL)
       continue;
-    check = (indicator->getPrev()->getElement() == ' ');
+    check = (indicator->getPrev()->getElement() == ' ' || indicator->getPrev()->getElement() == '\n');
   }
   return countWord;
 }

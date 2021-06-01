@@ -198,22 +198,37 @@ void LinkedList::saveText(string sourceFile)
 
 int LinkedList::countWord(string word)
 {
+  Node *indicator = head;
+  bool check = true;
   int countCharacter = 0, countWord = 0;
-  char character;
-  for (Node *indicator = head; indicator != NULL; indicator = indicator->getNext())
+
+  while (indicator != NULL)
   {
-    character = indicator->getElement();
-    if (stopCharacter(character))
+    if (check && (tolower(word[0]) == tolower(indicator->getElement())))
     {
-      if (countCharacter == word.size())
+      for (int i = 0; i < word.length(); i++)
+      {
+        if (tolower(word[i]) != tolower(indicator->getElement()))
+          countCharacter = 0;
+        else
+        {
+          countCharacter++;
+          indicator = indicator->getNext();
+          check = (indicator->getPrev()->getElement() == ' ');
+        }
+      }
+      if ((stopCharacter(indicator->getElement()) || (indicator == tail)) && countCharacter == word.length())
+      {
         countWord++;
-      countCharacter = 0;
+        countCharacter = 0;
+      }
+      else
+        countCharacter = 0;
     }
-    else
-    {
-      if (character == word[countCharacter])
-        countCharacter++;
-    }
+    indicator = indicator->getNext();
+    if (indicator == NULL)
+      continue;
+    check = (indicator->getPrev()->getElement() == ' ');
   }
   return countWord;
 }

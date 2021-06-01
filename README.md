@@ -52,4 +52,5 @@ When you first run main, a menu will pop up at your terminal, letting you do 4 t
 ## ✍️ Authors <a name = "authors"></a>
 
 - Amanda Massari 🦊
+- Luiz Szajnbok 🙂
 - Vitor Navarro 🦕
